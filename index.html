@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ücretsiz Online CV Oluşturucu - Profesyonel CV Hazırla | CV Builder Pro</title>
+  <meta name="description" content="Hızlı ve kolay online CV oluşturucu. Ücretsiz, profesyonel ve modern CV şablonları ile dakikalar içinde özgeçmişinizi oluşturun ve PDF olarak indirin." />
+  <meta name="keywords" content="cv oluşturma, online cv hazırlama, ücretsiz cv hazırlama, özgeçmiş oluşturucu, pdf cv indir, profesyonel cv şablonları, iş başvurusu cv, kolay cv yap" />
+  <meta name="robots" content="index, follow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Header */
+    header {
+      background-color: #1e3c72;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      user-select: none;
+      width: 100%;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    header p {
+      margin: 5px 0 15px;
+      font-weight: 400;
+    }
+
+    header nav {
+      background-color: #16335a;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 10px;
+    }
+
+    header nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1e3c72;
+      color: white;
+      user-select: none;
+      margin-top: 40px;
+      width: 100%;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(90deg, #eef2f3 0%, #8e9eab 100%);
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      color: #1e3c72;
+    }
+
+    h1 {
+      color: #1e3c72;
+      margin-bottom: 20px;
+      user-select: none;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      max-width: 1300px;
+      gap: 20px;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+
+    a svg:hover,
+    a:hover {
+      fill: #2563eb;
+      transform: scale(1.1);
+      transition: all 0.2s ease-in-out;
+      color: #2563eb;
+    }
+
+    .form-section,
+    .preview-section {
+      flex: 1;
+      overflow-y: auto;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-section {
+      padding-right: 10px;
+      border-right: 2px solid #eee;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin: 15px 0 5px;
+      color: #333;
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=tel],
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type=text]:focus,
+    input[type=email]:focus,
+    input[type=tel]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    button {
+      margin-top: 20px;
+      background: #1e3c72;
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      user-select: none;
+      align-self: flex-start;
+      box-shadow: 0 6px 15px rgba(30, 60, 114, 0.4);
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: #145293;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(20, 82, 147, 0.6);
+    }
+
+    .preview-section {
+      padding-left: 20px;
+      color: #1e3c72;
+      overflow-y: auto;
+    }
+
+    .cv {
+      max-width: 900px;
+      /* Eski 700px’den genişlettim */
+
+      padding: 40px 50px;
+      /* Daha bol padding */
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 0 15px rgba(30, 60, 114, 0.15);
+      font-size: 16px;
+      /* Font boyutunu büyüttüm */
+      line-height: 1.7;
+      user-select: none;
+    }
+
+
+    .cv h2 {
+      border-bottom: 2px solid #1e3c72;
+      padding-bottom: 6px;
+      margin-top: 20px;
+      margin-bottom: 12px;
+      color: #1e40af;
+    }
+
+    #photoPreview {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #1e3c72;
+      box-shadow: 0 4px 12px rgba(30, 60, 114, 0.2);
+    }
+
+    .section-item {
+      margin-bottom: 15px;
+      color: #334155;
+    }
+
+    .flex-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      background: #3b82f6;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .add-btn {
+      background: #3b82f6;
+      color: white;
+      border-radius: 50%;
+      border: none;
+      width: 36px;
+      height: 36px;
+      font-weight: bold;
+      font-size: 22px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      margin-left: 8px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+
+    .add-btn:hover {
+      background: #2563eb;
+      transform: scale(1.1);
+    }
+
+    .remove-btn {
+      background: #ef4444;
+      border: none;
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 24px;
+      text-align: center;
+      cursor: pointer;
+      margin-left: 8px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .remove-btn:hover {
+      background: #b91c1c;
+    }
+
+    .dynamic-section {
+      border: 1px solid #ccc;
+      padding: 14px 20px 20px 20px;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      position: relative;
+      background: #f9fafb;
+      box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .dynamic-section:hover {
+      box-shadow: inset 0 0 18px rgba(59, 130, 246, 0.15);
+    }
+
+    .dynamic-section label {
+      margin-top: 0;
+      color: #1e3c72;
+      font-weight: 600;
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact-row input {
+      flex: 1 1 45%;
+      min-width: 140px;
+    }
+
+    /* ChatGPT yardım linki */
+    label[for="about"] {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: #1e3c72;
+    }
+
+    label[for="about"] a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: #3b82f6;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    label[for="about"] a:hover {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+
+    label[for="about"] a img {
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+
+    label[for="about"] a:hover img {
+      filter: brightness(0.8);
+      transform: scale(1.15);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      .form-section {
+        border-right: none;
+        padding-right: 0;
+      }
+
+      .preview-section {
+        padding-left: 0;
+        margin-top: 30px;
+      }
+
+      button {
+        width: 100%;
+        padding: 14px 0;
+      }
+
+      .contact-row input {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+
+    <p>En hızlı ve profesyonel CV hazırlama aracı</p>
+    <nav>
+      <a href="main.html">Ana Sayfa</a>
+      <a href="ozellikler.html">Özellikler</a>
+      <a href="index.html">CV Oluştur</a>
+      <a href="iletişim.html">İletişim</a>
+    </nav>
+  </header>
+  <h1>Full Profesyonel CV Oluşturucu</h1>
+
+  <div class="container">
+
+    <form id="cvForm" class="form-section" onsubmit="return false;">
+
+      <label for="fullName">Ad Soyad</label>
+      <input type="text" id="fullName" placeholder="Adınızı girin" required />
+
+      <label for="jobTitle">Meslek / Ünvan</label>
+      <input type="text" id="jobTitle" placeholder="Mesleğinizi girin" required />
+
+      <label for="photoInput">Fotoğraf Yükle</label>
+      <input type="file" id="photoInput" accept="image/*" />
+
+      <label>İletişim Bilgileri</label>
+      <div class="contact-row">
+        <input type="tel" id="phone" placeholder="Telefon" />
+        <input type="email" id="email" placeholder="Email" />
+        <input type="text" id="linkedin" placeholder="LinkedIn URL" />
+        <input type="text" id="address" placeholder="Adres" />
+      </div>
+
+      <label for="about" style="display:flex; align-items:center; gap:10px;">
+        Hakkında
+        <a href="https://chat.openai.com/" target="_blank" title="CV metni desteği için tıkla"
+          style="display:inline-flex; align-items:center; text-decoration:none; gap:6px; font-size: 14px; color: #3b82f6; font-weight: 600;">
+          <img src="ChatGPT-Logo.png" alt="ChatGPT Logo" width="60" height="44" />
+          <span>Hakkımda yazısı için yardım alabilirsiniz</span>
+        </a>
+      </label>
+
+      <textarea id="about" rows="4" placeholder="Kendinizi kısaca tanıtın"></textarea>
+
+      <label>Eğitim</label>
+      <div id="educationList"></div>
+      <button class="add-btn" type="button" onclick="addEducation()">+</button>
+
+      <label>İş Deneyimi</label>
+      <div id="experienceList"></div>
+      <button class="add-btn" type="button" onclick="addExperience()">+</button>
+
+      <label for="skills">Yetenekler (Virgülle ayırın)</label>
+      <input type="text" id="skills" placeholder="JavaScript, React, CSS..." />
+
+      <button onclick="downloadPDF()">PDF Olarak İndir</button>
+    </form>
+
+    <div class="preview-section">
+      <div class="cv" id="cvPreview" aria-label="CV Önizleme Alanı">
+        <img id="photoPreview" src="https://i.pravatar.cc/150?img=3" alt="Fotoğraf" />
+        <h2 id="cvName">Ad Soyad</h2>
+        <p id="cvJob" style="font-style: italic; color: #64748b;">Meslek</p>
+
+        <section>
+          <h2>İletişim</h2>
+          <p id="cvContact" style="color:#475569; white-space: pre-wrap;">İletişim bilgileri burada görünecek</p>
+        </section>
+
+        <section>
+          <h2>Hakkında</h2>
+          <p id="cvAbout" style="color:#475569; white-space: pre-wrap;">Kendinizi kısaca tanıtın</p>
+        </section>
+
+        <section>
+          <h2>Eğitim</h2>
+          <div id="cvEducation"></div>
+        </section>
+
+        <section>
+          <h2>İş Deneyimi</h2>
+          <div id="cvExperience"></div>
+        </section>
+
+        <section>
+          <h2>Yetenekler</h2>
+          <div class="skills-list" id="cvSkills"></div>
+        </section>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <p>&copy; 2025 CV Builder Pro. Tüm hakları saklıdır.</p>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    // Elementler
+    const fullNameInput = document.getElementById('fullName');
+    const jobTitleInput = document.getElementById('jobTitle');
+    const photoInput = document.getElementById('photoInput');
+    const phoneInput = document.getElementById('phone');
+    const emailInput = document.getElementById('email');
+    const linkedinInput = document.getElementById('linkedin');
+    const addressInput = document.getElementById('address');
+    const aboutInput = document.getElementById('about');
+    const skillsInput = document.getElementById('skills');
+
+    const cvName = document.getElementById('cvName');
+    const cvJob = document.getElementById('cvJob');
+    const photoPreview = document.getElementById('photoPreview');
+    const cvContact = document.getElementById('cvContact');
+    const cvAbout = document.getElementById('cvAbout');
+    const cvSkills = document.getElementById('cvSkills');
+    const cvEducation = document.getElementById('cvEducation');
+    const cvExperience = document.getElementById('cvExperience');
+
+    // Güncellemeler
+    fullNameInput.addEventListener('input', () => {
+      cvName.textContent = fullNameInput.value.trim() || 'Ad Soyad';
+    });
+
+    jobTitleInput.addEventListener('input', () => {
+      cvJob.textContent = jobTitleInput.value.trim() || 'Meslek';
+    });
+
+    function updateContact() {
+      const phone = phoneInput.value.trim();
+      const email = emailInput.value.trim();
+      const linkedin = linkedinInput.value.trim();
+      const address = addressInput.value.trim();
+
+      let contactHTML = '';
+      if (phone) contactHTML += `📞 ${phone}\n`;
+      if (email) contactHTML += `✉️ ${email}\n`;
+      if (linkedin) contactHTML += `🔗 <a href="${linkedin}" target="_blank" rel="noopener noreferrer">${linkedin}</a>\n`;
+      if (address) contactHTML += `🏠 ${address}\n`;
+
+      cvContact.innerHTML = contactHTML.trim() ? contactHTML.replace(/\n/g, '<br>') : 'İletişim bilgileri burada görünecek';
+    }
+
+    phoneInput.addEventListener('input', updateContact);
+    emailInput.addEventListener('input', updateContact);
+    linkedinInput.addEventListener('input', updateContact);
+    addressInput.addEventListener('input', updateContact);
+
+    aboutInput.addEventListener('input', () => {
+      cvAbout.textContent = aboutInput.value.trim() || 'Kendinizi kısaca tanıtın';
+    });
+
+    skillsInput.addEventListener('input', () => {
+      const skills = skillsInput.value.split(',').map(s => s.trim()).filter(Boolean);
+      cvSkills.innerHTML = '';
+      skills.forEach(skill => {
+        const span = document.createElement('span');
+        span.className = 'skill-tag';
+        span.textContent = skill;
+        cvSkills.appendChild(span);
+      });
+    });
+
+    // Dinamik Eğitim ve Deneyim
+
+    let educationCount = 0;
+    let experienceCount = 0;
+
+    function addEducation() {
+      educationCount++;
+      const div = document.createElement('div');
+      div.className = 'dynamic-section';
+      div.id = `edu${educationCount}`;
+      div.innerHTML = `
+        <button type="button" class="remove-btn" onclick="removeElement('edu${educationCount}')">&times;</button>
+        <label>Okul Adı</label>
+        <input type="text" class="edu-school" placeholder="Okul adı" />
+        <label>Bölüm</label>
+        <input type="text" class="edu-degree" placeholder="Bölüm" />
+        <label>Başlangıç - Bitiş Tarihi</label>
+        <input type="text" class="edu-date" placeholder="Örn: 2015 - 2019" />
+      `;
+      document.getElementById('educationList').appendChild(div);
+
+      div.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', updateEducation);
+      });
+
+      updateEducation();
+    }
+
+    function updateEducation() {
+      const edus = document.querySelectorAll('.dynamic-section');
+      cvEducation.innerHTML = '';
+      edus.forEach(edu => {
+        if (!edu.id.startsWith('edu')) return;
+        const school = edu.querySelector('.edu-school').value.trim();
+        const degree = edu.querySelector('.edu-degree').value.trim();
+        const date = edu.querySelector('.edu-date').value.trim();
+        if (!school && !degree && !date) return;
+
+        const div = document.createElement('div');
+        div.className = 'section-item';
+        div.innerHTML = `<strong>${school}</strong> — ${degree} <br/><small>${date}</small>`;
+        cvEducation.appendChild(div);
+      });
+    }
+
+    function addExperience() {
+      experienceCount++;
+      const div = document.createElement('div');
+      div.className = 'dynamic-section';
+      div.id = `exp${experienceCount}`;
+      div.innerHTML = `
+        <button type="button" class="remove-btn" onclick="removeElement('exp${experienceCount}')">&times;</button>
+        <label>Şirket</label>
+        <input type="text" class="exp-company" placeholder="Şirket adı" />
+        <label>Pozisyon</label>
+        <input type="text" class="exp-position" placeholder="Pozisyon" />
+        <label>Başlangıç - Bitiş Tarihi</label>
+        <input type="text" class="exp-date" placeholder="Örn: 2019 - 2023" />
+        <label>Açıklama</label>
+        <textarea class="exp-desc" placeholder="Kısa iş açıklaması"></textarea>
+      `;
+      document.getElementById('experienceList').appendChild(div);
+
+      div.querySelectorAll('input, textarea').forEach(input => {
+        input.addEventListener('input', updateExperience);
+      });
+
+      updateExperience();
+    }
+
+    function updateExperience() {
+      const exps = document.querySelectorAll('.dynamic-section');
+      cvExperience.innerHTML = '';
+      exps.forEach(exp => {
+        if (!exp.id.startsWith('exp')) return;
+        const company = exp.querySelector('.exp-company').value.trim();
+        const position = exp.querySelector('.exp-position').value.trim();
+        const date = exp.querySelector('.exp-date').value.trim();
+        const desc = exp.querySelector('.exp-desc').value.trim();
+        if (!company && !position && !date && !desc) return;
+
+        const div = document.createElement('div');
+        div.className = 'section-item';
+        div.innerHTML = `<strong>${position}</strong> @ <em>${company}</em><br/><small>${date}</small><p>${desc}</p>`;
+        cvExperience.appendChild(div);
+      });
+    }
+
+    function removeElement(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.remove();
+        updateEducation();
+        updateExperience();
+      }
+    }
+
+    photoInput.addEventListener('change', e => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = e => {
+        photoPreview.src = e.target.result;
+      };
+      if (file) reader.readAsDataURL(file);
+    });
+
+    function downloadPDF() {
+      const element = document.getElementById('cvPreview');
+      html2pdf().from(element).set({
+        margin: 0.3,
+        filename: 'cv.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+      }).save();
+    }
+  </script>
+
+</body>
+
+</html>

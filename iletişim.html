@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>İletişim - CV Builder Pro</title>
+  <style>
+    /* Genel stiller */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      color: #1e3c72;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background-color: #1e3c72;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      user-select: none;
+    }
+
+    /* Nav */
+    nav {
+      background-color: #16335a;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 12px 0;
+      user-select: none;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+    nav a:hover,
+    nav a.active {
+      color: #3b82f6;
+      text-decoration: underline;
+    }
+
+    /* Ana içerik */
+    main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      background: #f0f2f5;
+    }
+
+    .contact-container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(30, 60, 114, 0.2);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+      text-align: center;
+      user-select: none;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      margin-top: 16px;
+      color: #1e3c72;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      font-family: inherit;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+    }
+
+    button {
+      margin-top: 24px;
+      background: #1e3c72;
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      width: 100%;
+      user-select: none;
+      box-shadow: 0 6px 15px rgba(30, 60, 114, 0.4);
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    button:hover {
+      background: #145293;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(20, 82, 147, 0.6);
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 20px;
+      padding: 14px;
+      background-color: #22c55e;
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+      text-align: center;
+      user-select: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 16px 20px;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .contact-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CV Builder Pro</h1>
+    <p>En hızlı ve profesyonel CV hazırlama aracı</p>
+  </header>
+
+  <nav>
+    <a href="main.html">Ana Sayfa</a>
+    <a href="ozellikler.html">Özellikler</a>
+    <a href="index.html">CV Oluştur</a>
+    <a href="iletişim.html" class="active">İletişim</a>
+  </nav>
+
+  <main>
+    <div class="contact-container">
+      <h1>İletişim</h1>
+      <form id="contactForm" onsubmit="return handleSubmit(event)">
+        <label for="name">Adınız</label>
+        <input type="text" id="name" name="name" placeholder="Adınızı girin" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email adresinizi girin" required />
+
+        <label for="message">Mesajınız</label>
+        <textarea id="message" name="message" rows="5" placeholder="Mesajınızı yazın..." required></textarea>
+
+        <button type="submit">Gönder</button>
+      </form>
+      <div class="success-message" id="successMessage">Mesajınız başarıyla gönderildi! Teşekkürler 😊</div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 CV Builder Pro. Tüm hakları saklıdır.</p>
+  </footer>
+
+<script>
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !message) {
+      alert('Lütfen isim ve mesajınızı yazın.');
+      return;
+    }
+
+    // Mesajı WhatsApp formatına uygun şekilde encode et
+    const text = encodeURIComponent(`İsim: ${name}\nMesaj: ${message}`);
+
+    // WhatsApp linki (Türkiye +90 ve numara 5070777506 olarak)
+    const whatsappNumber = '905070777506'; // 0 ve + yerine ülke kodu 90 ile
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${text}`;
+
+    // Yeni sekmede aç
+    window.open(whatsappURL, '_blank');
+
+    // Formu sıfırla
+    event.target.reset();
+  }
+</script>
+
+</body>
+</html>
