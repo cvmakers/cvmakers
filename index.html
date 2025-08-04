@@ -96,6 +96,7 @@
     }
 
     .container {
+      margin: 10px;
       display: flex;
       width: 100%;
       max-width: 1300px;
@@ -190,11 +191,16 @@
       color: #1e3c72;
       overflow-y: auto;
     }
+.section-item, .dynamic-section {
+  page-break-inside: avoid !important;
+}
 
     .cv {
       max-width: 900px;
       /* Eski 700px’den genişlettim */
-
+  page-break-inside: avoid !important;
+  page-break-after: auto !important;
+  page-break-before: auto !important;
       padding: 40px 50px;
       /* Daha bol padding */
       border: 1px solid #ccc;
@@ -375,6 +381,7 @@
       .container {
         flex-direction: column;
         padding: 15px;
+        width: 85%;
       }
 
       .form-section {
@@ -395,6 +402,12 @@
       .contact-row input {
         flex: 1 1 100%;
       }
+      a {
+        font-size: small;
+      }
+    }
+    h1 {
+      font-size: 20px;
     }
   </style>
 </head>
@@ -669,13 +682,14 @@
 
     function downloadPDF() {
       const element = document.getElementById('cvPreview');
-      html2pdf().from(element).set({
-        margin: 0.3,
-        filename: 'cv.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-      }).save();
+   html2pdf().from(element).set({
+  margin: 0.4,
+  filename: 'cv.pdf',
+  image: { type: 'jpeg', quality: 3 },
+  html2canvas: { scale: 1, scrollY: -window.scrollY },
+  jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+}).save();
+
     }
   </script>
 
