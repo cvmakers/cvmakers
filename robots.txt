@@ -1,5 +1,3 @@
-# robots.txt İHS Telekom tarafından oluşturuldu
 User-agent: *
-Disallow: 
-Disallow: /cgi-bin/
-Sitemap: https://cvmakers.github.io/cvmakers/sitemap.xml
+Allow: /
+Sitemap: https://cvmakers.store/sitemap.xml
